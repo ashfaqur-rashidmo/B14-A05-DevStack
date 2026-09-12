@@ -1,32 +1,174 @@
-# React + TypeScript + Vite
+Dev Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive Dev Stack Builder website where users can explore
+different development technologies and build their own technology stack.
+Users can view technology details, add technologies to their stack,
+remove individual technologies, or clear the entire stack.
 
-Currently, two official plugins are available:
+🚀 Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+React
 
-## React Compiler
+TypeScript
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tailwind CSS
 
-## Expanding the Oxlint configuration
+DaisyUI
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+React Icons
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+React Toastify
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+JSON
+
+Vite
+
+✨ Features
+
+1. Explore Technologies
+
+Users can browse different frontend, backend, database, and other
+development technologies with their icon, category, difficulty level,
+rating, and description.
+
+2. Build Your Own Stack
+
+Users can add technologies to their stack. A technology cannot be added
+twice, and added technologies are clearly shown as selected.
+
+3. Manage Your Stack
+
+Users can remove individual technologies or remove all selected
+technologies at once. Toast notifications provide feedback for add and
+remove actions.
+
+⚛️ React Questions & Answers
+
+1. What is JSX, and why is it used in React?
+
+JSX is a syntax that lets us write HTML-like code inside JavaScript or
+TypeScript. React uses JSX because it makes the UI easier to write and
+understand.
+
+2. What is the difference between props and state?
+
+Props are data passed from a parent component to a child component.
+They are read-only.
+
+State is data managed inside a component. When state changes, React
+updates the UI.
+
+3. What does the useState hook do, and where did you use it in this project?
+
+useState is used to create and update state in a React component.
+
+I used useState in the Technology component to store the selected
+technologies:
+
+const [selectedTech, setSelectedTech] = useState<TechTypes[]>([]);
+
+When a technology is added or removed, selectedTech is updated and the
+UI changes automatically.
+
+4. What does the useEffect hook do, and why did you need it to load the JSON data?
+
+useEffect is used to run side effects such as fetching data after a
+component renders. It is commonly used to load JSON data.
+
+In this project, I used React’s use() with a Promise to load the JSON
+data instead of useEffect:
+
+const technologies = use(TechFetchPromise);
+
+So, useEffect was not required in my current implementation.
+
+5. Why does every item in a .map() list need a unique key prop?
+
+React uses the key to identify each item in a list. A unique key helps
+React understand which items were added, removed, or changed and update
+the UI efficiently.
+
+For example:
+
+technologies.map((technology) => (
+    <TechCard
+        key={technology.id}
+        technology={technology}
+    />
+))
+
+6. What is conditional rendering? Show one place you used it.
+
+Conditional rendering means showing different UI depending on a
+condition.
+
+I used it in the stack section to show an empty-stack message when no
+technology is selected. When technologies are selected, the selected
+items are displayed instead.
+
+Example:
+
+{selectedTech.length === 0 ? (
+    <p>Your stack is empty.</p>
+) : (
+    selectedTech.map((technology) => (
+        // selected technology
+    ))
+)}
+
+7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
+
+A parent passes data to a child using props.
+
+For example, Technology passes technology, selectedTech, and
+handleAddToStack to TechCard:
+
+<TechCard
+    technology={technology}
+    handleAddToStack={handleAddToStack}
+    selectedTech={selectedTech}
+/>
+
+A child can send something back to the parent by calling a function that
+the parent passed through props.
+
+In this project, TechCard calls:
+
+handleAddToStack(technology);
+
+This sends the selected technology back to the parent component, where
+the stack state is updated.
+
+📁 Project Structure
+
+src/
+├── Components/
+│   ├── Banner/
+│   ├── Footer/
+│   ├── Navbar/
+│   ├── Technology/
+│   │   ├── TechCard.tsx
+│   │   ├── StackCard.tsx
+│   │   └── Technology.tsx
+│   └── types/
+├── assets/
+├── App.tsx
+└── App.css
+
+public/
+└── data.json
+
+📱 Responsive Design
+
+The website is designed to work across mobile devices, tablets, laptops,
+and desktop screens. Technology cards use a responsive grid, and the
+stack section changes position based on screen size.
+
+🛠️ Run Locally
+
+npm install
+npm run dev
+
+Then open the local URL shown by Vite in your browser.
+
+Built with React, TypeScript, and Tailwind CSS.
