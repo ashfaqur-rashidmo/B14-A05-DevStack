@@ -139,26 +139,7 @@ handleAddToStack(technology);
 This sends the selected technology back to the parent component, where
 the stack state is updated.
 
-## 📁 Project Structure
 
-```text
-src/
-├── Components/
-│   ├── Banner/
-│   ├── Footer/
-│   ├── Navbar/
-│   ├── Technology/
-│   │   ├── TechCard.tsx
-│   │   ├── StackCard.tsx
-│   │   └── Technology.tsx
-│   └── types/
-├── assets/
-├── App.tsx
-└── App.css
-
-public/
-└── data.json
-```
 
 📱 Responsive Design
 
