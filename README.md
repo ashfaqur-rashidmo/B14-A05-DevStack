@@ -139,8 +139,9 @@ handleAddToStack(technology);
 This sends the selected technology back to the parent component, where
 the stack state is updated.
 
-📁 Project Structure
+## 📁 Project Structure
 
+```text
 src/
 ├── Components/
 │   ├── Banner/
@@ -157,6 +158,7 @@ src/
 
 public/
 └── data.json
+```
 
 📱 Responsive Design
 
