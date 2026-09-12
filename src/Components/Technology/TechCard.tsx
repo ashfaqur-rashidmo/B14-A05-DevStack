@@ -1,5 +1,4 @@
 
-import React from 'react';
 import type { TechTypes } from '../types/TechTypes';
 import { FaStar } from 'react-icons/fa';
 import { IoCheckmark } from 'react-icons/io5';
